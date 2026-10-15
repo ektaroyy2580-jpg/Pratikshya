@@ -1,0 +1,12 @@
+Offline speech recognition assets (served locally; nothing is fetched from a CDN at runtime)
+
+vosk.js
+  vosk-browser 0.0.8 (dist/vosk.js, unmodified) — https://github.com/ccoreilly/vosk-browser
+  Copyright Ciaran O'Reilly. Licensed under the Apache License 2.0 (see LICENSE).
+  Bundles a WebAssembly build of Vosk / Kaldi (Apache-2.0).
+
+models/vosk-model-small-en-us-0.15.tar.gz
+  Vosk small US-English model 0.15 — https://alphacephei.com/vosk/models
+  Copyright 2020 Alpha Cephei Inc. Licensed under the Apache License 2.0 (see LICENSE).
+  Repackaged unchanged from the official .zip into the .tar.gz layout vosk-browser loads
+  (ustar, single top-level folder, gzip -9).

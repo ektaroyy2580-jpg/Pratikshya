@@ -1,0 +1,115 @@
+/* Platform module — console, settings, notifications, rewards, dashboard.
+   Builds on public/css/app.css tokens only. */
+
+.min-w-0 { min-width: 0; }
+.pf-head { padding: 1.9rem 0 1.6rem; }
+.pf-head h1 { font-size: clamp(1.45rem, 2.6vw, 1.95rem); margin: .25rem 0 .2rem; }
+.pf-demo { display: inline-flex; align-items: center; gap: .35rem; background: #eef0f6; color: var(--pk-muted); border-radius: 999px; padding: .25rem .65rem; font-size: .74rem; font-weight: 700; white-space: nowrap; }
+
+/* ---------- Console shell ---------- */
+.pf-shell { display: grid; grid-template-columns: 248px minmax(0, 1fr); gap: 1.75rem; align-items: start; padding-top: 1.75rem; }
+.pf-side { position: sticky; top: 84px; }
+.pf-side .pk-card { padding: .75rem; }
+.pf-side .grp { font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--pk-muted); padding: .85rem .7rem .35rem; }
+.pf-side .grp:first-child { padding-top: .35rem; }
+.pf-nav-link { display: flex; align-items: center; gap: .7rem; padding: .6rem .7rem; border-radius: 11px; color: var(--pk-ink-2); font-weight: 600; font-size: .9rem; text-decoration: none; transition: background .2s, color .2s; }
+.pf-nav-link i { font-size: 1rem; width: 1.1rem; text-align: center; color: var(--pk-muted); transition: color .2s; }
+.pf-nav-link:hover { background: var(--pk-bg); color: var(--pk-ink); }
+.pf-nav-link.active { background: var(--pk-tint); color: var(--pk-blue); }
+.pf-nav-link.active i { color: var(--pk-blue); }
+.pf-nav-link .count { margin-left: auto; font-size: .7rem; font-weight: 800; background: var(--pk-warn-tint); color: var(--pk-warn); border-radius: 999px; padding: .1rem .5rem; }
+.pf-scope { margin: .6rem .2rem .2rem; padding: .75rem .8rem; border-radius: 12px; background: var(--pk-bg); font-size: .78rem; color: var(--pk-muted); line-height: 1.45; }
+.pf-scope strong { color: var(--pk-ink); display: block; font-size: .82rem; }
+.pf-menu-btn { display: none; }
+@media (max-width: 991.98px) {
+    .pf-shell { grid-template-columns: minmax(0, 1fr); gap: 1rem; padding-top: 1rem; }
+    .pf-side { position: static; }
+    .pf-menu-btn { display: flex; width: 100%; align-items: center; justify-content: space-between; }
+    .pf-menu-btn .bi-chevron-down { transition: transform .25s var(--pk-ease); }
+    .pf-menu-btn[aria-expanded="true"] .bi-chevron-down { transform: rotate(180deg); }
+    .pf-side-collapse:not(.show) { display: none; }
+    .pf-side-collapse { margin-top: .6rem; }
+}
+@media (min-width: 992px) { .pf-side-collapse { display: block !important; height: auto !important; } }
+
+.pf-title { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: .75rem 1rem; margin-bottom: 1.25rem; }
+.pf-title h1 { font-size: clamp(1.35rem, 2.4vw, 1.7rem); margin: .2rem 0 0; }
+.pf-title p { margin: .3rem 0 0; color: var(--pk-muted); font-size: .92rem; }
+
+/* ---------- KPI tiles ---------- */
+.pf-kpi { padding: 1.05rem 1.1rem; height: 100%; display: flex; flex-direction: column; gap: .8rem; }
+.pf-kpi .pk-icon { width: 36px; height: 36px; font-size: 1rem; border-radius: 10px; }
+.pf-kpi .v { font-size: 1.7rem; font-weight: 800; letter-spacing: -.03em; line-height: 1; font-variant-numeric: tabular-nums; }
+.pf-kpi .v small { font-size: .85rem; font-weight: 700; color: var(--pk-muted); letter-spacing: 0; }
+.pf-kpi .l { font-size: .78rem; font-weight: 600; color: var(--pk-muted); margin-top: .35rem; }
+.pf-kpi.off { background: repeating-linear-gradient(135deg, #fbfbfe 0 10px, #f6f7fc 10px 20px); }
+.pf-kpi.off .v { font-size: 1rem; color: var(--pk-muted); }
+
+/* ---------- Panels / tables ---------- */
+.pf-panel { overflow: hidden; }
+.pf-panel-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .5rem 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--pk-line); }
+.pf-panel-head h2 { font-size: 1rem; margin: 0; display: flex; align-items: center; gap: .5rem; }
+.pf-panel-body { padding: 1.25rem; }
+.pf-tbl { font-size: .9rem; margin: 0; }
+.pf-tbl thead th { background: var(--pk-bg); border-bottom: 1px solid var(--pk-line); white-space: nowrap; }
+.pf-tbl > :not(caption) > * > * { padding: .8rem 1rem; vertical-align: middle; }
+.pf-tbl > :not(caption) > * > *:first-child { padding-left: 1.25rem; }
+.pf-tbl > :not(caption) > * > *:last-child { padding-right: 1.25rem; }
+.pf-tbl tbody tr { transition: background .2s; }
+.pf-tbl tbody tr:hover { background: #fbfcff; }
+.pf-tbl tbody tr:last-child > * { border-bottom: 0; }
+.pf-tbl .sub { font-size: .78rem; color: var(--pk-muted); font-weight: 600; }
+.pf-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .76rem; }
+.pf-act { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .74rem; font-weight: 600; background: var(--pk-bg); border: 1px solid var(--pk-line); color: var(--pk-ink-2); padding: .16rem .5rem; border-radius: 6px; white-space: nowrap; }
+@media (max-width: 767.98px) {
+    .pf-stack thead { display: none; }
+    .pf-stack, .pf-stack tbody, .pf-stack tr, .pf-stack td { display: block; width: 100%; }
+    .pf-stack tr { padding: .9rem 1rem; border-bottom: 1px solid var(--pk-line); }
+    .pf-stack tbody tr:last-child { border-bottom: 0; }
+    .pf-tbl.pf-stack > :not(caption) > * > * { padding: .25rem 0 !important; border: 0; }
+    .pf-stack td[data-label]::before { content: attr(data-label); display: block; font-size: .66rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--pk-muted); margin-bottom: .2rem; }
+    .pf-panel-head { padding: .9rem 1rem; }
+    .pf-panel-body { padding: 1rem; }
+}
+
+/* ---------- Badges ---------- */
+.pf-badge { display: inline-flex; align-items: center; gap: .3rem; border-radius: 999px; font-weight: 700; font-size: .74rem; padding: .22rem .6rem; white-space: nowrap; }
+.pf-badge.ok { background: var(--pk-success-tint); color: var(--pk-success); }
+.pf-badge.warn { background: var(--pk-warn-tint); color: var(--pk-warn); }
+.pf-badge.bad { background: var(--pk-danger-tint); color: var(--pk-danger); }
+.pf-badge.muted { background: #eef0f6; color: var(--pk-muted); }
+.pf-badge.info { background: var(--pk-tint); color: var(--pk-blue); }
+.pf-badge.violet { background: var(--pk-tint-violet); color: var(--pk-violet); }
+.pf-badge.ink { background: var(--pk-ink); color: #fff; }
+
+/* ---------- Forms ---------- */
+.pf-form .form-text { font-size: .78rem; color: var(--pk-muted); }
+.pf-switch { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; padding: .95rem 0; border-top: 1px solid #f0f1f7; }
+.pf-switch:first-child { border-top: 0; padding-top: .2rem; }
+.pf-switch .t { font-weight: 700; font-size: .92rem; }
+.pf-switch .d { font-size: .8rem; color: var(--pk-muted); margin-top: .15rem; max-width: 46ch; }
+.pf-switch .form-switch { padding-left: 0; margin: 0; }
+.pf-switch .form-switch .form-check-input { width: 2.6rem; height: 1.4rem; margin: 0; cursor: pointer; float: none; }
+.pf-switch .form-check-input:disabled { cursor: not-allowed; }
+.pf-switch.disabled .t { color: var(--pk-muted); }
+.pf-saved { font-size: .78rem; font-weight: 700; color: var(--pk-success); opacity: 0; transition: opacity .3s; }
+.pf-saved.show { opacity: 1; }
+.pf-filter { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.pf-filter .form-control, .pf-filter .form-select { padding-top: .5rem; padding-bottom: .5rem; font-size: .88rem; }
+.pf-filter .btn { padding: .5rem .95rem; font-size: .86rem; }
+.btn-xs { padding: .3rem .7rem !important; font-size: .8rem !important; }
+.btn-ghost.btn-xs { box-shadow: none; }
+
+/* ---------- Map picker ---------- */
+.pf-map { height: 300px; border-radius: 14px; border: 1px solid var(--pk-line); overflow: hidden; background: var(--pk-bg); }
+.pf-map-note { font-size: .78rem; color: var(--pk-muted); }
+
+/* ---------- Empty state ---------- */
+.pf-empty { text-align: center; padding: 2.5rem 1.25rem; }
+.pf-empty .pk-icon { width: 52px; height: 52px; font-size: 1.4rem; border-radius: 15px; }
+
+/* ---------- Pagination ---------- */
+.pagination { --bs-pagination-border-radius: 10px; --bs-pagination-color: var(--pk-ink-2); --bs-pagination-active-bg: var(--pk-blue); --bs-pagination-active-border-color: var(--pk-blue); --bs-pagination-border-color: var(--pk-line); margin: 0; flex-wrap: wrap; }
+.pf-pager { padding: .9rem 1.25rem; border-top: 1px solid var(--pk-line); }
+.pf-pager nav > div:first-child { display: none; }
+.pf-pager p { margin: 0; }
